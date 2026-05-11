@@ -20,6 +20,8 @@ The Xiaomi S12A is a fantastic piece of hardware, but its software is locked dow
 
 ## 🛠 Hardware Preparation
 
+![UART Connection](./docs/images/uart_connection.jpg)
+
 | Part | Connection |
 | :--- | :--- |
 | **Adapter** | USB-to-TTL (CH340G, CP2102, etc.) |
@@ -34,9 +36,11 @@ The Xiaomi S12A is a fantastic piece of hardware, but its software is locked dow
 ### 1️⃣ Phase 1: The Serial Gateway
 Connect your serial adapter and interrupt the boot process to access U-Boot. Use the `scripts/01_ymodem_flash.py` to downgrade to a vulnerable firmware.
 
-### 2️⃣ Phase 2: Firmware Patching
-Inject our custom boot-hook into the system partition. This ensures the speaker calls our custom script on every boot.
-> **Note**: We modify `rc.local` in the `squashfs` image.
+### 2️⃣ Phase 2: Firmware Patching (Optional)
+We have provided a pre-patched firmware in this repository:
+`firmware/root_modified_v1.52_patched.squashfs`
+
+This image already has the `rc.local` boot-hook injected. You can flash it directly using the instructions in Phase 1.
 
 ### 3️⃣ Phase 3: One-Click Persistence
 Once you have temporary access, run:
