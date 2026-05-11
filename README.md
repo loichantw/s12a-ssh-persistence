@@ -57,9 +57,10 @@ This script automates the creation of `init.sh`, mounts your persistent `/etc` o
 
 ## 📚 References & Credits
 
-Special thanks to the community members on **Right.com.cn** and the **OpenXiaoAi** contributors.
-- [Right Forum S12A Thread](https://www.right.com.cn/forum/thread-754877-1-1.html)
-- [MiMiku Project](https://github.com/duhow/MiMiku)
+Special thanks to the pioneers who explored the Xiaomi AI Speaker ecosystem:
+- **Right Forum (恩山無線論壇)**: [小米小愛音箱 S12A 獲取 SSH 權限並持久化 (Thread 754877)](https://www.right.com.cn/forum/thread-754877-1-1.html) - *The foundational guide for this device.*
+- **Open-XiaoAi**: [GitHub - Open-XiaoAi/open-xiaoai](https://github.com/Open-XiaoAi/open-xiaoai) - *The ultimate open-source hub for Xiaomi speaker hacking.*
+- **XiaoAi-Patch**: [Community Firmware Patching Logic](https://www.right.com.cn/forum/forum-155-1.html)
 
 ---
 
