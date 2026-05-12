@@ -234,23 +234,62 @@ ssh -i ~/.ssh/mico_rsa root@<speaker_ip>
 
 ```
 s12a-ssh-persistence/
-├── README.md              # 本文件
-├── LICENSE                # MIT 授權
+├── README.md                              # 本文件（中文）
+├── README_EN.md                           # English Version
+├── LICENSE                                # MIT 授權
 ├── docs/
-│   └── SECURITY.md       # 安全警告詳情
+│   └── SECURITY.md                       # 安全警告詳情
 ├── scripts/
-│   ├── patch_firmware.py  # 一鍵封裝修改韌體
-│   └── flash_and_boot.py  # 傳輸、刷入、切換分區
+│   ├── patch_firmware.py                 # 一鍵封裝修改韌體
+│   └── flash_and_boot.py                # 傳輸、刷入、切換分區
 └── firmware/
-    └── .gitkeep           # 韌體檔案不包含在 repo 中
+    └── rootfs_v1.76.54_original.bin      # 官方原始韌體（需自行備份，見下方說明）
 ```
+
+---
+
+## 📦 原始韌體取得方式
+
+`firmware/rootfs_v1.76.54_original.bin` 是從音箱上直接 `dd` 備份的官方原始韌體。
+
+### 如何自行備份
+
+在已取得 root 的音箱上（例如 1.52.1 recovery 分區），執行：
+
+```bash
+# 查看當前掛載的系統分區
+mount | grep system
+
+# 備份 system0 (mtdblock4) 或 system1 (mtdblock5)
+dd if=/dev/mtdblock4 of=/data/rootfs_backup.bin
+# 或
+dd if=/dev/mtdblock5 of=/data/rootfs_backup.bin
+```
+
+然後透過 SCP/SSH 將 `/data/rootfs_backup.bin` 拉回電腦。
+
+### 驗證
+
+```bash
+# 確認是有效的 squashfs 檔案
+file rootfs_backup.bin
+# 應輸出：Squashfs filesystem, little endian, version 4.0, xz compressed...
+```
+
+---
+
+## 🌐 Language / 語言
+
+- 🇹🇼 **中文版**：本文件 (`README.md`)
+- 🇬🇧 **English**：[README_EN.md](./README_EN.md)
 
 ---
 
 ## 📚 致謝
 
+- **Open-XiaoAi**：[GitHub - idootop/open-xiaoai](https://github.com/idootop/open-xiaoai) — 讓小愛音箱「聽見你的聲音」，解鎖無限可能
+- **OpenVela / CSDN**：[Open-XiaoAI 安全刷機避坑指南](https://openvela.csdn.net/69c4896c54b52172bc646166.html) — 新手必看的固件選擇、SSH 連接與故障排查
 - **恩山無線論壇 (right.com.cn)**：[小米小愛音箱 S12A 獲取 SSH 權限並持久化](https://www.right.com.cn/forum/thread-754877-1-1.html) — 基礎串口方法參考
-- **Open-XiaoAi**：[GitHub - open-xiaoai](https://github.com/Open-XiaoAi/open-xiaoai) — 小愛音箱開源社群
 - **90後の插班生**：原始的 `rc.local` 注入方法靈感
 
 ---
